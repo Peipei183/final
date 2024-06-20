@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Paper Scissors Stone </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .game-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .game {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Paper Scissors Stone</h1>
+        <div class="game">
+            <button onclick="playGame('剪刀')">剪刀</button>
+            <button onclick="playGame('石頭')">石頭</button>
+            <button onclick="playGame('布')">布</button>
+        </div>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        function playGame(playerSelection) {
+            const moves = ['剪刀', '石頭', '布'];
+            const computerSelection = moves[Math.floor(Math.random() * moves.length)];
+            
+            let result;
+            
+            if (playerSelection === computerSelection) {
+                result = "平手";
+            } else if ((playerSelection === '石頭' && computerSelection === '剪刀') ||
+                       (playerSelection === '布' && computerSelection === '石頭') ||
+                       (playerSelection === '剪刀' && computerSelection === '布')) {
+                result = "玩家獲勝!";
+            } else {
+                result = "電腦獲勝!";
+            }
+            
+            displayMessage(`玩家出 ${playerSelection}. 電腦出 ${computerSelection}. ${result}`);
+        }
+
+        function displayMessage(message) {
+            document.getElementById("message").textContent = message;
+        }
+    </script>
+</body>
+</html>
